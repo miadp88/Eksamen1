@@ -1,41 +1,3 @@
-<style scoped>
-#app{
-  background-image: url('./assets/body.png') !important;
-  background-repeat: no-repeat !important;
-  background-size:cover;
-}
-
-.glass{
-/* From https://css.glass */
-background: rgba(221, 205, 206, 0.123);
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(5.2px);
--webkit-backdrop-filter: blur(5.2px);
-}
-.waitlist{
-/* From https://css.glass */
-background: rgba(233, 73, 61, 0.589);
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(5.2px);
--webkit-backdrop-filter: blur(5.2px);
-}
-.progress{
-/* From https://css.glass */
-background: rgba(233, 193, 61, 0.651);
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(5.2px);
--webkit-backdrop-filter: blur(5.2px);
-}
-
-.done{
-/* From https://css.glass */
-background: rgba(35, 194, 83, 0.616);
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(5.2px);
--webkit-backdrop-filter: blur(5.2px);
-}
-</style>
-
 <template>
   <v-app id="app">
     <v-app-bar app color="primary" dark>
@@ -93,12 +55,12 @@ backdrop-filter: blur(5.2px);
                   <br>
                   <!-- Task title -->
                   <v-list-item v-if="!task.editable">{{ task.title }}</v-list-item>
-                  <v-text-field v-model="task.title" v-else label="Task Name"></v-text-field>
+                  <v-text-field v-else v-model="task.title" label="Task Name"></v-text-field>
                   <!-- Task title -->
 
                   <!-- Task description -->
-                  <v-list-item class="text-subtitle-1" v-if="!task.editable">{{ task.description }}</v-list-item>
-                  <v-text-field v-model="task.description" v-else label="Task Description"></v-text-field>
+                  <v-list-item v-if="!task.editable" class="text-subtitle-1">{{ task.description }}</v-list-item>
+                  <v-text-field v-else v-model="task.description" label="Task Description"></v-text-field>
                   <!-- Task description -->
 
                   <template v-if="task.editable">
@@ -114,13 +76,13 @@ backdrop-filter: blur(5.2px);
                 <v-card-actions class="justify-end text-right">
                   <!-- Actions -->
                   <v-icon color="red" @click="deleteTask(index)">mdi-delete</v-icon>
-                  <v-icon color="primary" v-if="!task.editable" @click="editTask(index)">mdi-pencil</v-icon>
-                  <v-icon color="primary" v-else @click="updateTask(index)">mdi-check</v-icon>
+                  <v-icon v-if="!task.editable" color="primary" @click="editTask(index)">mdi-pencil</v-icon>
+                  <v-icon v-else color="primary" @click="updateTask(index)">mdi-check</v-icon>
                   <!-- Actions -->
 
                   <!-- Color changer dialog component -->
                   <v-dialog v-model="task.colorPickerDialog" width="auto">
-                    <template v-slot:activator="{ props }">
+                    <template #activator="{ props }">
                       <v-card-actions color="primary px-0" v-bind="props" @click="task.colorPickerDialog = true">
                         <v-icon color="orange-darken-2 " size="25">mdi-palette</v-icon>
                       </v-card-actions>
@@ -157,12 +119,12 @@ backdrop-filter: blur(5.2px);
                   <br>
                   <!-- Task title -->
                   <v-list-item v-if="!task.editable">{{ task.title }}</v-list-item>
-                  <v-text-field v-model="task.title" v-else label="Task Name"></v-text-field>
+                  <v-text-field v-else v-model="task.title" label="Task Name"></v-text-field>
                   <!-- Task title -->
 
                   <!-- Task description -->
-                  <v-list-item class="text-subtitle-1" v-if="!task.editable">{{ task.description }}</v-list-item>
-                  <v-text-field v-model="task.description" v-else label="Task Description"></v-text-field>
+                  <v-list-item v-if="!task.editable" class="text-subtitle-1">{{ task.description }}</v-list-item>
+                  <v-text-field v-else v-model="task.description" label="Task Description"></v-text-field>
                   <!-- Task description -->
 
                   <template v-if="task.editable">
@@ -178,13 +140,13 @@ backdrop-filter: blur(5.2px);
                 <v-card-actions class="justify-end text-right">
                   <!-- Actions -->
                   <v-icon color="red" @click="deleteTask(index)">mdi-delete</v-icon>
-                  <v-icon color="primary" v-if="!task.editable" @click="editTask(index)">mdi-pencil</v-icon>
-                  <v-icon color="primary" v-else @click="updateTask(index)">mdi-check</v-icon>
+                  <v-icon v-if="!task.editable" color="primary" @click="editTask(index)">mdi-pencil</v-icon>
+                  <v-icon v-else color="primary" @click="updateTask(index)">mdi-check</v-icon>
                   <!-- Actions -->
 
                   <!-- Color changer dialog component -->
                   <v-dialog v-model="task.colorPickerDialog" width="auto">
-                    <template v-slot:activator="{ props }">
+                    <template #activator="{ props }">
                       <v-card-actions color="primary px-0" v-bind="props" @click="task.colorPickerDialog = true">
                         <v-icon color="orange-darken-2 " size="25">mdi-palette</v-icon>
                       </v-card-actions>
@@ -219,12 +181,12 @@ backdrop-filter: blur(5.2px);
                   <br>
                   <!-- Task title -->
                   <v-list-item v-if="!task.editable">{{ task.title }}</v-list-item>
-                  <v-text-field v-model="task.title" v-else label="Task Name"></v-text-field>
+                  <v-text-field v-else v-model="task.title" label="Task Name"></v-text-field>
                   <!-- Task title -->
 
                   <!-- Task description -->
-                  <v-list-item class="text-subtitle-1" v-if="!task.editable">{{ task.description }}</v-list-item>
-                  <v-text-field v-model="task.description" v-else label="Task Description"></v-text-field>
+                  <v-list-item v-if="!task.editable" class="text-subtitle-1">{{ task.description }}</v-list-item>
+                  <v-text-field v-else v-model="task.description" label="Task Description"></v-text-field>
                   <!-- Task description -->
 
                   <template v-if="task.editable">
@@ -240,13 +202,13 @@ backdrop-filter: blur(5.2px);
                 <v-card-actions class="justify-end text-right">
                   <!-- Actions -->
                   <v-icon color="red" @click="deleteTask(index)">mdi-delete</v-icon>
-                  <v-icon color="primary" v-if="!task.editable" @click="editTask(index)">mdi-pencil</v-icon>
-                  <v-icon color="primary" v-else @click="updateTask(index)">mdi-check</v-icon>
+                  <v-icon v-if="!task.editable" color="primary" @click="editTask(index)">mdi-pencil</v-icon>
+                  <v-icon v-else color="primary" @click="updateTask(index)">mdi-check</v-icon>
                   <!-- Actions -->
 
                   <!-- Color changer dialog component -->
                   <v-dialog v-model="task.colorPickerDialog" width="auto">
-                    <template v-slot:activator="{ props }">
+                    <template #activator="{ props }">
                       <v-card-actions color="primary px-0" v-bind="props" @click="task.colorPickerDialog = true">
                         <v-icon color="orange-darken-2 " size="25">mdi-palette</v-icon>
                       </v-card-actions>
@@ -285,7 +247,7 @@ export default {
     };
   },
   methods: {
-    clearHistory() {
+     clearHistory() {
       // Réinitialiser le LocalStorage
     localStorage.clear();
     // Refresh page
@@ -344,3 +306,41 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+#app{
+  background-image: url('./assets/body.png') !important;
+  background-repeat: no-repeat !important;
+  background-size:cover;
+}
+
+.glass{
+/* From https://css.glass */
+background: rgba(221, 205, 206, 0.123);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5.2px);
+-webkit-backdrop-filter: blur(5.2px);
+}
+.waitlist{
+/* From https://css.glass */
+background: rgba(233, 73, 61, 0.589);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5.2px);
+-webkit-backdrop-filter: blur(5.2px);
+}
+.progress{
+/* From https://css.glass */
+background: rgba(233, 193, 61, 0.651);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5.2px);
+-webkit-backdrop-filter: blur(5.2px);
+}
+
+.done{
+/* From https://css.glass */
+background: rgba(35, 194, 83, 0.616);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5.2px);
+-webkit-backdrop-filter: blur(5.2px);
+}
+</style>
